@@ -1,0 +1,41 @@
+package arrays;
+
+import java.util.Scanner;
+
+public class Matriz {
+
+	public static void main(String[] args) {
+		Scanner tcl = new Scanner(System.in);
+		
+		System.out.print("Numero de alunos: ");
+		int qtdAlunos = tcl.nextInt();
+		
+		System.out.print("Numero de notas por aluno: ");
+		int qtdNotas = tcl.nextInt();
+		
+		double notasDaTurma[][] = new double[qtdAlunos][qtdNotas];
+		
+		double totalTurma = 0;//media da turma- class average
+		double totalAluno = 0;//media por aluno- media per student
+		
+    //Construindo a matriz- Building the matrix 
+		for(int aluno = 1; aluno < notasDaTurma.length; aluno++) {
+			for(int nota = 0; nota < notasDaTurma[aluno].length; nota++) {
+				System.out.printf("Informe a %d nota do aluno %d: ",
+						nota + 1, aluno);
+				notasDaTurma[aluno][nota] = tcl.nextDouble();
+				totalTurma += notasDaTurma[aluno][nota];//Soma a nota total da turma- Sum the total grade of the class
+				totalAluno += notasDaTurma[aluno][nota];//Soma a nota total do aluno- Sum the student's total grade
+			}
+			double mediaAluno = totalAluno / qtdNotas;//calcula a nota do aluno- calculates the student's grade
+			System.out.printf("A media do aluno %d eh %.1f\n", aluno, mediaAluno);
+			totalAluno = 0;
+		}		
+		
+		double media = totalTurma / (qtdAlunos * qtdNotas);//calcula a media da turma-  calculates the class average
+		System.out.printf("Media da turma eh %.1f", media);
+		
+		tcl.close();
+	}
+	
+}
